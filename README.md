@@ -1,3 +1,23 @@
+# Code Scavenger: Algorithm Efficiency Demo
+
+This small React/Vite project is designed as an educational playground for
+students learning about algorithm efficiency. The app presents a friendly,
+interactive challenge where you convert wasteful code into an optimized
+version using basic programming concepts like loops.
+
+## How to use
+
+1. Start the development server (`npm run dev`).
+2. Open the app in your browser (typically http://localhost:5173).
+3. A welcome card will greet you with instructions; click **Start the
+   Challenge** to begin.
+4. Follow the prompts on-screen to experiment with code optimization.
+
+The goal is to make the robot cheer using fewer lines of code! Enjoy
+iterating and learning.
+
+---
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
