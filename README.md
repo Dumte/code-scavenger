@@ -16,6 +16,12 @@ version using basic programming concepts like loops.
 The goal is to make the robot cheer using fewer lines of code! Enjoy
 iterating and learning.
 
+## Credits
+
+- Developed for classroom use by your instructor (adapted from a
+  Scratch-based exercise).
+- Original concept and teaching materials prepared by the teacher.
+
 ---
 
 # React + Vite

@@ -22,11 +22,26 @@ function App() {
         {!started ? (
           <div className="max-w-xl bg-slate-900 p-8 rounded-xl shadow-lg text-center">
             <h2 className="text-2xl font-semibold mb-4">Welcome!</h2>
-            <p className="text-slate-300 mb-4">
-              This interactive demo will walk you through a simple challenge about
-              algorithm efficiency. Your task is to turn verbose code into a
-              more efficient version using basic programming concepts like loops.
+            <p className="text-xs text-slate-500 mb-2">
+              Created by your instructor for Grade 5 ICT. Adapted from earlier
+              Scratch exercises.
             </p>
+            <div className="text-left text-slate-300 mb-4 max-h-64 overflow-y-auto whitespace-pre-wrap pb-2">
+              <strong>Reading guide:</strong>
+              <p className="mt-2">
+                Note 2 Subject: ICT Class: 5th grade Topic: Algorithm Efficiency
+                Objective: WALT (We Are Learning To) Compare algorithms for the
+                same task, identify inefficient steps (e.g., unnecessary
+                repetition), and improve them to make them more efficient (fewer
+                steps, faster, or simpler) Keywords: Algorithm, efficiency,
+                optimise, repetition, iteration (loop), selection, compare,
+                flowchart Main Focus • Spot waste in algorithms (too many
+                repeated actions). • Compare two solutions: count steps, predict
+                time. • Improve by using loops (iteration), better selection, or
+                simpler logic. • Understand why efficiency matters (saves
+                computer time, power, easier to read/debug).
+              </p>
+            </div>
             <button
               onClick={handleStart}
               className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full transition-transform hover:scale-105"
