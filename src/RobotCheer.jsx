@@ -3,23 +3,68 @@ import React, { useState } from "react";
 const RobotCheer = () => {
   const [isOptimized, setIsOptimized] = useState(false);
   const [stepCount, setStepCount] = useState(6);
+  const [animIndex, setAnimIndex] = useState(0);
 
   const optimize = () => {
     setIsOptimized(true);
     setStepCount(2); // The 2-line challenge met!
   };
 
+  // preload sounds
+  const clapSound = new Audio("https://www.soundjay.com/human/applause-01.mp3");
+  const jumpSound = new Audio(
+    "https://actions.google.com/sounds/v1/cartoon/boing.ogg",
+  );
+
+  // animation loop for the robot actions
+  React.useEffect(() => {
+    const actions = ["clap", "jump", "clap", "jump", "clap", "jump"];
+    if (!isOptimized) {
+      const interval = setInterval(() => {
+        setAnimIndex((i) => {
+          const next = (i + 1) % actions.length;
+          const action = actions[next];
+          if (action === "clap") clapSound.play().catch(() => {});
+          if (action === "jump") jumpSound.play().catch(() => {});
+          return next;
+        });
+      }, 800);
+      return () => clearInterval(interval);
+    }
+  }, [isOptimized]);
+
   return (
     <div className="flex flex-col items-center p-8 bg-slate-900 rounded-2xl shadow-2xl border border-blue-500 max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold text-blue-400 mb-4">
         Level 1: The Robot Cheer 🤖
       </h2>
-      <p className="text-slate-300 mb-6 text-center">
-        The Robot is moving too slowly! Can you crush these 6 steps into just 2
-        lines?
+      <p className="text-slate-300 mb-2 text-center">
+        Our robot needs to <strong>clap and jump three times</strong>. You can
+        see it move in the animation above and emoji icons beside each code
+        line. After watching the six actions, rewrite the code to make the job
+        shorter.
       </p>
+      <div className="flex items-center justify-center h-32">
+        {isOptimized ? (
+          <img
+            src="https://media.giphy.com/media/26tPplGWjN0xLybiU/giphy.gif"
+            alt="robot celebrating"
+            className="h-24"
+          />
+        ) : (
+          <img
+            src="https://media.giphy.com/media/3oEdva9BUHPIs2SkGk/giphy.gif"
+            alt="robot clapping and jumping"
+            className="h-24"
+          />
+        )}
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+        {/* visual legend for children */}
+        <div className="col-span-full text-center mb-2 text-slate-400 text-sm">
+          🤖 = robot, 👏 = clap, 🤾 = jump (and listen for the sound)
+        </div>
         {/* Wasteful View */}
         <div
           className={`p-4 bg-red-900/20 border-2 border-red-500 rounded-lg transition-opacity ${isOptimized ? "opacity-30" : "opacity-100"}`}
@@ -28,11 +73,14 @@ const RobotCheer = () => {
           {["Clap", "Jump", "Clap", "Jump", "Clap", "Jump"].map((action, i) => (
             <div
               key={i}
-              className="bg-black p-1 my-1 font-mono text-xs border border-red-900"
+              className="bg-black p-1 my-1 font-mono text-xs border border-red-900 flex items-center justify-between"
             >
-              {i + 1}. robot.{action}();
+              <span>
+                {i + 1}. robot.{action}();
+              </span>
+              <span>{action === "Clap" ? "👏" : "🤾"}</span>
             </div>
-          ))}
+          ))}{" "}
         </div>
 
         {/* Optimized View */}
@@ -43,8 +91,9 @@ const RobotCheer = () => {
               <div className="bg-black p-2 font-mono text-blue-400 border border-green-500">
                 1. repeat(3) {"{"}
               </div>
-              <div className="bg-black p-2 ml-4 font-mono text-white border-l border-green-500">
-                2. robot.cheer();
+              <div className="bg-black p-2 ml-4 font-mono text-white border-l border-green-500 flex items-center justify-between">
+                <span>2. robot.cheer();</span>
+                <span>🎉</span>
               </div>
               <div className="bg-black p-2 font-mono text-blue-400 border border-green-500">
                 {"}"}
